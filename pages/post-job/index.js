@@ -34,29 +34,44 @@ const items = [
     getItem('Register', '5', <FileOutlined />),
     getItem('Error', '6', <CloseCircleOutlined />),
 ];
-const data = [
+const columns = [
     {
-        title: 'F123456 - Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        count: '500'
+        title: 'User Story',
+        dataIndex: 'userstory',
     },
     {
-        title: 'F123456 - Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        count: '500'
+        title: 'Point',
+        dataIndex: 'point',
     },
     {
-        title: 'F123456 - Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        count: '500'
+        title: 'Address',
+        dataIndex: 'address',
     },
     {
-        title: 'F123456 - Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        count: '500'
+        title: 'DEV Owner',
+        dataIndex: 'devowner',
     },
     {
-        title: 'F123456 - Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-        count: '500'
+        title: 'QA Owner',
+        dataIndex: 'qaowner',
     },
-
+    {
+        title: 'Product Owner',
+        dataIndex: 'po',
+    },
 ];
+const data = [];
+for (let i = 0; i < 46; i++) {
+    data.push({
+        key: i,
+        userstory: `Edward King ${i}`,
+        point: 32,
+        address: `London, Park Lane no. ${i}`,
+        devowner: `uservi ${i}`,
+        qaowner: `userduy ${i}`,
+        po: `userduc ${i}`
+    });
+}
 export default function PostJob() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
@@ -82,7 +97,7 @@ export default function PostJob() {
                         </Modal>
                     </div>
                     <Content className="bg-white m-5 rounded-2xl">
-                        <TableData />
+                        <TableData data={data} columns={columns} />
                     </Content>
                     <AppFooter />
                 </Layout>

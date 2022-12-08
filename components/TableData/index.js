@@ -1,45 +1,9 @@
 
 import { Table } from 'antd';
 import { useState } from 'react';
-const columns = [
-    {
-        title: 'User Story',
-        dataIndex: 'userstory',
-    },
-    {
-        title: 'Point',
-        dataIndex: 'point',
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-    },
-    {
-        title: 'DEV Owner',
-        dataIndex: 'devowner',
-    },
-    {
-        title: 'QA Owner',
-        dataIndex: 'qaowner',
-    },
-    {
-        title: 'Product Owner',
-        dataIndex: 'po',
-    },
-];
-const data = [];
-for (let i = 0; i < 46; i++) {
-    data.push({
-        key: i,
-        userstory: `Edward King ${i}`,
-        point: 32,
-        address: `London, Park Lane no. ${i}`,
-        devowner: `uservi ${i}`,
-        qaowner: `userduy ${i}`,
-        po: `userduc ${i}`
-    });
-}
-export default function TableData() {
+
+export default function TableData(props) {
+    const { data, columns } = props
     // todo: handle select
     // const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     // const onSelectChange = (newSelectedRowKeys) => {

@@ -62,7 +62,6 @@ export default function Home() {
                 <Sidebar items={items} />
                 <Layout className="site-layout">
                     <AppBar />
-
                     <Content style={{ margin: '0 16px' }} >
                         <AppContent title="My Task" data={data} hasTasks={true} isShowBtn={true} />
                     </Content>
