@@ -8,11 +8,9 @@ import {
     LockOutlined,
     CloseCircleOutlined,
 } from '@ant-design/icons';
-import { Button, Input, Layout } from 'antd';
-import Sidebar from '../../components/Sider';
-import AppBar from '../../components/AppHeader';
-import AppFooter from '../../components/AppFooter';
+import { Layout } from 'antd';
 import AppContent from '../../components/AppContent';
+import LayoutPage from '../../components/LayoutPage';
 const { Content } = Layout;
 function getItem(label, key, icon, children) {
     return {
@@ -58,16 +56,9 @@ const data = [
 export default function Home() {
     return (
         <>
-            <Layout style={{ minHeight: '100vh' }}>
-                <Sidebar items={items} />
-                <Layout className="site-layout">
-                    <AppBar />
-                    <Content style={{ margin: '0 16px' }} >
-                        <AppContent title="My Job" data={data} />
-                    </Content>
-                    <AppFooter />
-                </Layout>
-            </Layout>
+            <LayoutPage items={items}>
+                <AppContent title="My Job" data={data} />
+            </LayoutPage>
         </>
 
     )

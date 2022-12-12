@@ -9,11 +9,8 @@ import {
     CloseCircleOutlined,
 } from '@ant-design/icons';
 import { Layout } from 'antd';
-import Sidebar from '../../components/Sider';
-import AppBar from '../../components/AppHeader';
-import AppFooter from '../../components/AppFooter';
 import AppContent from '../../components/AppContent';
-const { Content } = Layout;
+import LayoutPage from '../../components/LayoutPage';
 function getItem(label, key, icon, children) {
     return {
         key,
@@ -58,16 +55,9 @@ const data = [
 export default function Home() {
     return (
         <>
-            <Layout style={{ minHeight: '100vh' }}>
-                <Sidebar items={items} />
-                <Layout className="site-layout">
-                    <AppBar />
-                    <Content style={{ margin: '0 16px' }} >
-                        <AppContent title="My Task" data={data} hasTasks={true} isShowBtn={true} />
-                    </Content>
-                    <AppFooter />
-                </Layout>
-            </Layout>
+            <LayoutPage items={items}>
+                <AppContent title="My Task" data={data} hasTasks={true} isShowBtn={true} />
+            </LayoutPage>
         </>
 
     )

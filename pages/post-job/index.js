@@ -8,14 +8,11 @@ import {
     LockOutlined,
     CloseCircleOutlined,
 } from '@ant-design/icons';
-import { Button, Input, Layout, Modal } from 'antd';
-import Sidebar from '../../components/Sider';
-import AppBar from '../../components/AppHeader';
-import AppFooter from '../../components/AppFooter';
+import { Button, Modal } from 'antd';
 import { useState } from 'react';
 import FormUserStory from '../../components/FormUserStory';
 import TableData from '../../components/TableData';
-const { Content } = Layout;
+import LayoutPage from '../../components/LayoutPage';
 function getItem(label, key, icon, children) {
     return {
         key,
@@ -83,25 +80,20 @@ export default function PostJob() {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
+    const wrapperChildren = (
+        <div className='flex justify-between items-center m-5 '>
+            <h1 className='font-bold text-3xl'>Project Solance</h1>
+            <Button className='bg-[#5048E5] text-white' onClick={showModal}>Add UserStory</Button>
+            <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
+                <FormUserStory title="Post User Story" />
+            </Modal>
+        </div>
+    )
     return (
         <>
-            <Layout style={{ minHeight: '100vh' }}>
-                <Sidebar items={items} />
-                <Layout className="site-layout">
-                    <AppBar />
-                    <div className='flex justify-between items-center m-5 '>
-                        <h1 className='font-bold text-3xl'>Project Solance</h1>
-                        <Button className='bg-[#5048E5] text-white' onClick={showModal}>Add UserStory</Button>
-                        <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
-                            <FormUserStory title="Post User Story" />
-                        </Modal>
-                    </div>
-                    <Content className="bg-white m-5 rounded-2xl">
-                        <TableData data={data} columns={columns} />
-                    </Content>
-                    <AppFooter />
-                </Layout>
-            </Layout>
+            <LayoutPage items={items} wrapperChildren={wrapperChildren}>
+                <TableData data={data} columns={columns} />
+            </LayoutPage>
         </>
 
     )

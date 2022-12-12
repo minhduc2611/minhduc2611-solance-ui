@@ -9,12 +9,8 @@ import {
     CloseCircleOutlined,
 } from '@ant-design/icons';
 import { Button, Layout } from 'antd';
-import Sidebar from '../../components/Sider';
-import AppBar from '../../components/AppHeader';
-import AppFooter from '../../components/AppFooter';
-import AppContent from '../../components/AppContent';
 import CardDetails from '../../components/CardDetails';
-import DescriptionDetails from '../../components/DescriptionDetails';
+import LayoutPage from '../../components/LayoutPage';
 const { Content } = Layout;
 function getItem(label, key, icon, children) {
     return {
@@ -68,16 +64,9 @@ const description = " Lorem Ipsum is simply dummy text of the printing and types
 export default function JobDetails() {
     return (
         <>
-            <Layout style={{ minHeight: '100vh' }}>
-                <Sidebar items={items} />
-                <Layout className="site-layout">
-                    <AppBar />
-                    <Content style={{ margin: '0 16px' }} >
-                        <CardDetails title="F112345 - Change logic for new UI" columns={columns} data={data} description={description} />
-                    </Content>
-                    <AppFooter />
-                </Layout>
-            </Layout>
+            <LayoutPage items={items}>
+                <CardDetails title="F112345 - Change logic for new UI" columns={columns} data={data} description={description} />
+            </LayoutPage>
         </>
 
     )
