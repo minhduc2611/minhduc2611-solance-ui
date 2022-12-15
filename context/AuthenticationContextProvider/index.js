@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 const anchor = require("@project-serum/anchor");
-import { useLocalStorage, useWallet } from "@solana/wallet-adapter-react";
+import { useWallet } from "@solana/wallet-adapter-react";
 export const AuthenticationContext = createContext();
 export const useAuthenticationContext = () =>
   React.useContext(AuthenticationContext);
@@ -13,7 +13,6 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [hasPhantom, setHasPhantom] = useState(true);
   const [connected, setConnected] = useState(false);
   const [phantom, setPhantom] = useState();
-  const [autoConnect, setAutoConnect] = useLocalStorage('autoConnect', true);
 
   const wallet = useWallet();
   const connectPhantomWallet = () => {
@@ -78,8 +77,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         signup,
         isSigedIn,
         hasUserAssociatedWithWallet,
-        wallet,
-        autoConnect, setAutoConnect
+        wallet
       }}
     >
       {children}

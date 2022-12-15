@@ -1,5 +1,3 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import MainView from "../components/mainView";
 import styles from "../styles/Home.module.css";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useAuthenticationContext } from "../context/AuthenticationContextProvider";
