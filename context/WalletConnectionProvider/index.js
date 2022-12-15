@@ -13,7 +13,6 @@ const WalletConnectionProvider = ({ children }) => {
   const endpoint = useMemo(() => SOLANA_HOST, []);
   const wallets = useMemo(() => [new PhantomWalletAdapter()], []);
   const {autoConnect} = useAutoConnect();
-  console.log('autoConnect', autoConnect)
   return (
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect={autoConnect}>
