@@ -1,17 +1,31 @@
-
-import '../styles/globals.css'
-import dynamic from 'next/dynamic'
-import '@solana/wallet-adapter-react-ui/styles.css'
+import "../styles/globals.css";
+import dynamic from "next/dynamic";
+import "@solana/wallet-adapter-react-ui/styles.css";
+import { AutoConnectProvider } from "../context/AutoConnectProvider";
+import { AuthenticationContextProvider } from "../context/AuthenticationContextProvider";
+const WalletConnectionProvider = dynamic(
+  () => import("../context/WalletConnectionProvider/index"),
+  {
+    ssr: false,
+  }
+);
 function MyApp({ Component, pageProps }) {
-  const WalletConnectionProvider = dynamic(
-    () => import('../context/WalletConnectionProvider/index'), {
-    ssr: false
-  })
   return (
-    <WalletConnectionProvider>
-      <Component {...pageProps} />
-    </WalletConnectionProvider>
-  )
+    <AutoConnectProvider>
+        <Providers>
+          <Component {...pageProps} />
+        </Providers>
+    </AutoConnectProvider>
+  );
 }
 
-export default MyApp
+function Providers({ children }) {
+  return (
+      <WalletConnectionProvider>
+        <AuthenticationContextProvider>
+          {children}
+        </AuthenticationContextProvider>
+      </WalletConnectionProvider>
+  );
+}
+export default MyApp;

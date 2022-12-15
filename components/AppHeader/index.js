@@ -5,7 +5,14 @@ import {
     SearchOutlined,
     BellFilled,
 } from '@ant-design/icons';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import dynamic from 'next/dynamic';
 const { Header } = Layout;
+
+// const WalletConnectionBtn = dynamic(
+//     () => import('../../components/ConnectWallet/index'), {
+//     ssr: false
+//   })
 export default function AppBar(props) {
     return (
         <>
@@ -26,6 +33,7 @@ export default function AppBar(props) {
                     <TeamOutlined style={{ margin: "0 1rem" }} />
                     <BellFilled style={{ margin: "0 1rem" }} />
                     <Avatar icon={<UserOutlined />} style={{ margin: "0 1rem" }} />
+                    <WalletMultiButton />
                 </div>
             </Header>
         </>

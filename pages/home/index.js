@@ -1,14 +1,11 @@
 import {
-    DesktopOutlined,
-    FileOutlined,
-    SettingOutlined,
+    BarChartOutlined, CloseCircleOutlined, DesktopOutlined,
+    FileOutlined, LockOutlined, SettingOutlined,
     TeamOutlined,
-    UserOutlined,
-    BarChartOutlined,
-    LockOutlined,
-    CloseCircleOutlined,
+    UserOutlined
 } from '@ant-design/icons';
 import { Layout } from 'antd';
+import { useRouter } from 'next/router';
 import AppContent from '../../components/AppContent';
 import LayoutPage from '../../components/LayoutPage';
 const { Content } = Layout;
