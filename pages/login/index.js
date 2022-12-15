@@ -1,6 +1,10 @@
-import { Avatar, Button, Checkbox, Col, Form, Image, Input, Row } from 'antd';
 
-export default function Login() {
+
+import { Avatar, Button, Checkbox, Col, Form, Input, Row } from 'antd';
+import dynamic from 'next/dynamic'
+import '@solana/wallet-adapter-react-ui/styles.css'
+
+const Login = () => {
     const onFinish = (values) => {
         console.log('Success:', values);
     };
@@ -8,6 +12,10 @@ export default function Login() {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+    const WalletConnectionBtn = dynamic(
+        () => import('../../components/ConnectWallet/index'), {
+        ssr: false
+      })
     return (
         <Row className='bg-[#512DA8] h-screen' >
             <Col span={8}></Col>
@@ -72,10 +80,15 @@ export default function Login() {
                         <Button htmlType="submit" className="bg-[#512DA8] w-full text-white hover:bg-black h-12 font-bold">
                             Submit
                         </Button>
+                        {/* <WalletMultiButton /> */}
+                        <WalletConnectionBtn/>
                     </Form.Item>
                 </Form>
             </Col>
             <Col span={8}></Col>
         </Row>
+
     );
 }
+
+export default Login
