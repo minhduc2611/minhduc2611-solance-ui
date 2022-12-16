@@ -1,16 +1,18 @@
 import {
-    DesktopOutlined,
-    FileOutlined,
-    SettingOutlined,
-    TeamOutlined,
-    UserOutlined,
-    BarChartOutlined,
-    LockOutlined,
-    CloseCircleOutlined,
-} from '@ant-design/icons';
-import { Button, Layout, Select } from 'antd';
-import JobListItem from '../../components/JobListItem';
-import LayoutPage from '../../components/LayoutPage';
+  DesktopOutlined,
+  FileOutlined,
+  SettingOutlined,
+  TeamOutlined,
+  UserOutlined,
+  BarChartOutlined,
+  LockOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
+import { Button, Layout, Select } from "antd";
+import JobListItem from "../../components/JobListItem";
+import LayoutPage from "../../components/LayoutPage";
+import useGetAllProject from "../../hooks/useGetAllProject";
+import { useRouter } from "next/router";
 function getItem(label, key, icon, children) {
     return {
         key,
@@ -239,40 +241,57 @@ const wrapperChildren = (
     </div>
 )
 export default function JobList() {
-    return (
-        <>
-            <LayoutPage items={items} wrapperChildren={wrapperChildren}>
-                {
-                    mockData?.map((i) => {
-                        let arr = []
-                        for (let k = 0; k < i.tasks.length; k++) {
-                            arr.push({
-                                id: i.tasks[k].id,
-                                startDate: i.tasks[k].startDate,
-                                endDate: i.tasks[k].endDate,
-                                devOwner: {
-                                    name: "dev1"
-                                },
-                                name: i.tasks[k].name,
-                                description: i.tasks[k].description,
-                                action: <Button htmlType="submit" className="bg-[#512DA8] text-white hover:bg-black h-10 font-bold">
-                                    Apply
-                                </Button>
-                            })
-                        }
-                        return (
-                            <JobListItem
-                                id={i.id}
-                                descriptions={i.descriptions}
-                                name={i.name}
-                                owner={i.owner}
-                                columns={columns}
-                                data={arr} />
-                        )
-                    })
-                }
-            </LayoutPage>
-        </>
-
+  const { data } = useGetAllProject();
+  const router = useRouter()
+  let checkUserLogin;
+  let checkRoleUser;
+  if (typeof window !== "undefined") {
+    checkUserLogin = Boolean(localStorage.getItem("userlogin"));
+    checkRoleUser = localStorage.getItem("role");
+    if (!(checkUserLogin && checkRoleUser === "dev")) {
+      router.push("/home");
+    }
+  }
+  return (
+    checkRoleUser &&
+    checkUserLogin && (
+      <>
+        <LayoutPage items={items} wrapperChildren={wrapperChildren}>
+          {data?.map((i) => {
+            let arr = [];
+            for (let k = 0; k < i.tasks.length; k++) {
+              arr.push({
+                id: k + 1,
+                startDate: "25/05/2022",
+                endDate: "25/05/2023",
+                devOwner: {
+                  name: "dev",
+                },
+                name: i.tasks[k].name,
+                description: i.tasks[k].description,
+                action: (
+                  <Button
+                    htmlType="submit"
+                    className="bg-[#512DA8] text-white hover:bg-black h-10 font-bold"
+                  >
+                    Apply
+                  </Button>
+                ),
+              });
+            }
+            return (
+              <JobListItem
+                id={i.id}
+                descriptions={i.descriptions}
+                name={i.name}
+                owner={i.owner}
+                columns={columns}
+                data={arr}
+              />
+            );
+          })}
+        </LayoutPage>
+      </>
     )
+  );
 }
