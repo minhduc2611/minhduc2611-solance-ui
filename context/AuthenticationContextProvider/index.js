@@ -31,9 +31,9 @@ export const AuthenticationContextProvider = ({ children }) => {
   const hasUserAssociatedWithWallet = async () => {};
   useEffect(() => {
     const provider = getProvider();
-    console.log("wallet.connected", wallet.connected);
+    // console.log("wallet.connected", wallet.connected);
     if (!wallet.connected) {
-      console.log("TO CONNECT ", wallet.connected);
+      // console.log("TO CONNECT ", wallet.connected);
     }
     if (!provider) {
       setHasPhantom(false);
@@ -57,9 +57,9 @@ export const AuthenticationContextProvider = ({ children }) => {
     // its tricky beause the system takes some renders to auto connect to the wallet
 
     if (!provider.isConnected) {
-      console.log(" PROVIDER IS NOT CONNECT ?", provider.isConnected);
+      // console.log(" PROVIDER IS NOT CONNECT ?", provider.isConnected);
     } else {
-      console.log(" PROVIDER IS CONNECT !", provider.isConnected);
+      // console.log(" PROVIDER IS CONNECT !", provider.isConnected);
     }
     if (provider) {
       provider.on("disconnect", () => {
@@ -71,6 +71,13 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
     }
     // todo: too much provider.on might create memory leaks
+
+
+    if (wallet.connected) {
+      console.log(" PROVIDER IS CONNECT !", provider.isConnected);
+
+    }
+  
   }, [wallet.connected]);
 
   /**

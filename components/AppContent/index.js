@@ -19,12 +19,12 @@ export default function AppContent(props) {
                                 <>
                                     <div className='flex justify-between'>
                                         <div>
-                                            <p><b>Total budget:</b> 100 SOLANA</p>
-                                            <p><b>Total tasks:</b> 2</p>
+                                            <p><b>Total budget:</b> {item.count} SOL</p>
+                                            {/* <p><b>Total tasks:</b> 2</p> */}
                                             {hasTask && <p><b>Status:</b> Success</p>}
                                         </div>
                                         <div>
-                                            {isShowBtn && <Button htmlType="submit" className="bg-[#512DA8] w-full text-white hover:bg-black h-10 font-bold">
+                                            {isShowBtn && <Button htmlType="submit" disabled={item.disabled} className="bg-[#512DA8] w-full text-white hover:bg-black h-10 font-bold">
                                                 Claim Earning
                                             </Button>}
                                         </div>

@@ -13,24 +13,7 @@ import { Button, Layout } from "antd";
 import CardDetails from "../../components/CardDetails";
 import LayoutPage from "../../components/LayoutPage";
 const { Content } = Layout;
-function getItem(label, key, icon, children) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-}
-const items = [
-  getItem("Dashboard", "1", <BarChartOutlined />),
-  getItem("Resources", "2", <DesktopOutlined />),
-  getItem("Project Management", "sub1", <UserOutlined />),
-  getItem("Account", "sub2", <TeamOutlined />),
-  getItem("Settings", "3", <SettingOutlined />),
-  getItem("Login", "4", <LockOutlined />),
-  getItem("Register", "5", <FileOutlined />),
-  getItem("Error", "6", <CloseCircleOutlined />),
-];
+
 const columns = [
   {
     title: "Name",
@@ -73,26 +56,23 @@ export default function JobDetails() {
   let checkUserLogin;
   let checkRoleUser;
   const router = useRouter();
-  if (typeof window !== "undefined") {
-    checkUserLogin = Boolean(localStorage.getItem("userlogin"));
-    checkRoleUser = localStorage.getItem("role");
-    if (!(checkUserLogin && checkRoleUser === "po")) {
-      router.push("/job-list");
-    }
-  }
+  // if (typeof window !== "undefined") {
+  //   checkUserLogin = Boolean(localStorage.getItem("userlogin"));
+  //   checkRoleUser = localStorage.getItem("role");
+  //   if (!(checkUserLogin && checkRoleUser === "po")) {
+  //     router.push("/job-list");
+  //   }
+  // }
   return (
-    checkUserLogin &&
-    checkRoleUser === "po" && (
-      <>
-        <LayoutPage items={items}>
-          <CardDetails
-            title="F112345 - Change logic for new UI"
-            columns={columns}
-            data={data}
-            description={description}
-          />
-        </LayoutPage>
-      </>
-    )
+    <>
+      <LayoutPage>
+        <CardDetails
+          title="F112345 - Change logic for new UI"
+          columns={columns}
+          data={data}
+          description={description}
+        />
+      </LayoutPage>
+    </>
   );
 }

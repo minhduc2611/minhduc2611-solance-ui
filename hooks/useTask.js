@@ -11,7 +11,7 @@ const useAccount = () => {
 
   const getAllTasks = async () => {
     let tasks = await solanceProgram.program.account.task.all();
-    console.log("tasks", tasks);
+    // console.log("tasks", tasks);
 
     return tasks;
   };

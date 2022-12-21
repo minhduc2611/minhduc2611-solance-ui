@@ -32,7 +32,7 @@ export default function AppBar(props) {
                 <div className='mx-5 flex items-center'>
                     <TeamOutlined style={{ margin: "0 1rem" }} />
                     <BellFilled style={{ margin: "0 1rem" }} />
-                    <Avatar icon={<UserOutlined />} style={{ margin: "0 1rem" }} />
+                    {/* <Avatar icon={<UserOutlined />} style={{ margin: "0 1rem" }} /> */}
                     <WalletMultiButton />
                 </div>
             </Header>
